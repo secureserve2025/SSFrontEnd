@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
+import AIProvider from './components/AIIntegrationHooks';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import BenefitsSection from './components/BenefitsSection';
@@ -10,12 +11,15 @@ import ProductDemo from './components/ProductDemo';
 import TestimonialsSection from './components/TestimonialsSection';
 import SupportCenter from './components/SupportCenter';
 import ComplianceSection from './components/ComplianceSection';
+import ComplianceOfficerProfile from './components/ComplianceOfficerProfile';
 import RoadmapSection from './components/RoadmapSection';
 import BlogSection from './components/BlogSection';
 import EnhancedOnboarding from './components/EnhancedOnboarding';
 import TrustIndicators from './components/TrustIndicators';
 import StripeIntegrationWizard from './components/StripeIntegrationWizard';
 import LegalPages from './components/LegalPages';
+import LiveStats from './components/LiveStats';
+import VideoUploadWorkspace from './components/VideoUploadWorkspace';
 import FAQsSection from './components/FAQsSection';
 import CTASection from './components/CTASection';
 import FreelancerLogin from './pages/FreelancerLogin';
@@ -53,93 +57,118 @@ function App() {
 
   return (
     <LanguageProvider>
-      <Router>
-        <Routes>
-          <Route path="/login/freelancer" element={<FreelancerLogin />} />
-          <Route path="/login/client" element={<ClientLogin />} />
-          <Route path="/signup/freelancer" element={<FreelancerSignup />} />
-          <Route path="/signup/client" element={<ClientSignup />} />
-          <Route path="/freelancer/dashboard" element={<FreelancerDashboard />} />
-          <Route path="/client/dashboard" element={<ClientDashboard />} />
-          <Route path="/legal" element={
-            <div className="min-h-screen transition-colors duration-300 bg-gray-900">
-              <Header darkMode={darkMode} />
-              <div className="pt-16">
-                <LegalPages darkMode={darkMode} />
-              </div>
-            </div>
-          } />
-          <Route path="/" element={
-            <div className="min-h-screen transition-colors duration-300 bg-gray-900">
-              {/* Header Component */}
-              <Header darkMode={darkMode} />
-              
-              {/* Hero Section */}
-              <HeroSection darkMode={darkMode} />
-              
-              {/* Trust Indicators */}
-              <div className="py-8 px-4 sm:px-6 lg:px-8 bg-gray-800">
-                <div className="max-w-7xl mx-auto">
-                  <TrustIndicators darkMode={darkMode} variant="header" />
+      <AIProvider>
+        <Router>
+          <Routes>
+            <Route path="/login/freelancer" element={<FreelancerLogin />} />
+            <Route path="/login/client" element={<ClientLogin />} />
+            <Route path="/signup/freelancer" element={<FreelancerSignup />} />
+            <Route path="/signup/client" element={<ClientSignup />} />
+            <Route path="/freelancer/dashboard" element={<FreelancerDashboard />} />
+            <Route path="/client/dashboard" element={<ClientDashboard />} />
+            <Route path="/compliance" element={
+              <div className="min-h-screen transition-colors duration-300 bg-gray-900">
+                <Header darkMode={darkMode} />
+                <div className="pt-16">
+                  <ComplianceSection darkMode={darkMode} />
+                  <ComplianceOfficerProfile darkMode={darkMode} />
                 </div>
               </div>
-              
-              {/* Product Demo Section */}
-              <ProductDemo darkMode={darkMode} />
-              
-              {/* Benefits Section */}
-              <BenefitsSection darkMode={darkMode} />
-              
-              {/* SecureServe Benefits Section */}
-              <SecureServeBenefits darkMode={darkMode} />
-              
-              {/* How It Works Section */}
-              <HowItWorksSection darkMode={darkMode} />
-              
-              {/* Trust Indicators Full */}
-              <div className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-800">
-                <div className="max-w-7xl mx-auto">
-                  <TrustIndicators darkMode={darkMode} variant="inline" />
+            } />
+            <Route path="/legal" element={
+              <div className="min-h-screen transition-colors duration-300 bg-gray-900">
+                <Header darkMode={darkMode} />
+                <div className="pt-16">
+                  <LegalPages darkMode={darkMode} />
                 </div>
               </div>
-              
-              {/* Testimonials Section */}
-              <TestimonialsSection darkMode={darkMode} />
-              
-              {/* Support Center */}
-              <SupportCenter darkMode={darkMode} />
-              
-              {/* Compliance Section */}
-              <ComplianceSection darkMode={darkMode} />
-              
-              {/* Roadmap Section */}
-              <RoadmapSection darkMode={darkMode} />
-              
-              {/* Blog Section */}
-              <BlogSection darkMode={darkMode} />
-              
-              {/* FAQs Section */}
-              <FAQsSection darkMode={darkMode} />
-              
-              {/* CTA and Footer Section */}
-              <CTASection darkMode={darkMode} />
-              
-              {/* Enhanced Onboarding Modal */}
-              <EnhancedOnboarding
-                isOpen={showOnboarding}
-                onClose={() => setShowOnboarding(false)}
-                userType={onboardingType}
-              />
-              
-              {/* Stripe Integration Wizard */}
-              <StripeIntegrationWizard
-                isOpen={showStripeWizard}
-                onClose={() => setShowStripeWizard(false)}
-              />
-            </div>
-          } />
-        </Routes>
-      </Router>
+            } />
+            <Route path="/video-workspace" element={
+              <div className="min-h-screen transition-colors duration-300 bg-gray-900">
+                <Header darkMode={darkMode} />
+                <div className="pt-16 px-4 sm:px-6 lg:px-8">
+                  <div className="max-w-6xl mx-auto py-8">
+                    <VideoUploadWorkspace 
+                      userType="client" 
+                      projectId="P12345"
+                      onUploadComplete={(data) => console.log('Upload complete:', data)}
+                    />
+                  </div>
+                </div>
+              </div>
+            } />
+            <Route path="/" element={
+              <div className="min-h-screen transition-colors duration-300 bg-gray-900">
+                {/* Header Component */}
+                <Header darkMode={darkMode} />
+                
+                {/* Hero Section */}
+                <HeroSection darkMode={darkMode} />
+                
+                {/* Live Stats */}
+                <div className="py-8 px-4 sm:px-6 lg:px-8 bg-gray-800">
+                  <div className="max-w-7xl mx-auto">
+                    <LiveStats darkMode={darkMode} variant="hero" />
+                  </div>
+                </div>
+                
+                {/* Product Demo Section */}
+                <ProductDemo darkMode={darkMode} />
+                
+                {/* Benefits Section */}
+                <BenefitsSection darkMode={darkMode} />
+                
+                {/* SecureServe Benefits Section */}
+                <SecureServeBenefits darkMode={darkMode} />
+                
+                {/* How It Works Section */}
+                <HowItWorksSection darkMode={darkMode} />
+                
+                {/* Trust Indicators Full */}
+                <div className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-800">
+                  <div className="max-w-7xl mx-auto">
+                    <TrustIndicators darkMode={darkMode} variant="inline" />
+                  </div>
+                </div>
+                
+                {/* Testimonials Section */}
+                <TestimonialsSection darkMode={darkMode} />
+                
+                {/* Support Center */}
+                <SupportCenter darkMode={darkMode} />
+                
+                {/* Compliance Section */}
+                <ComplianceSection darkMode={darkMode} />
+                
+                {/* Roadmap Section */}
+                <RoadmapSection darkMode={darkMode} />
+                
+                {/* Blog Section */}
+                <BlogSection darkMode={darkMode} />
+                
+                {/* FAQs Section */}
+                <FAQsSection darkMode={darkMode} />
+                
+                {/* CTA and Footer Section */}
+                <CTASection darkMode={darkMode} />
+                
+                {/* Enhanced Onboarding Modal */}
+                <EnhancedOnboarding
+                  isOpen={showOnboarding}
+                  onClose={() => setShowOnboarding(false)}
+                  userType={onboardingType}
+                />
+                
+                {/* Stripe Integration Wizard */}
+                <StripeIntegrationWizard
+                  isOpen={showStripeWizard}
+                  onClose={() => setShowStripeWizard(false)}
+                />
+              </div>
+            } />
+          </Routes>
+        </Router>
+      </AIProvider>
     </LanguageProvider>
   );
 }

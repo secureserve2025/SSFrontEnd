@@ -331,6 +331,16 @@ const ComplianceSection: React.FC<ComplianceSectionProps> = ({ darkMode }) => {
           }`}>
             Bank-grade security with full regulatory compliance and comprehensive insurance coverage
           </p>
+          
+          {/* Compliance Summary */}
+          <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg max-w-4xl mx-auto">
+            <p className="text-blue-900 font-medium text-lg">
+              SecureServe is fully certified: RBI-compliant Escrow | ISO 27001 Information Security | PCI DSS Level 1 Payment Security.
+            </p>
+            <a href="/compliance" className="text-blue-600 hover:text-blue-700 font-medium underline">
+              Learn more about our compliance →
+            </a>
+          </div>
         </div>
 
         {/* Tab Navigation */}

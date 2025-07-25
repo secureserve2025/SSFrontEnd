@@ -60,12 +60,28 @@ const HeroSection: React.FC<HeroSectionProps> = ({ darkMode }) => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                <button className="px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold text-lg transition-colors">
-                  {t('hero.startTrial')}
-                </button>
+                <a href="/signup/freelancer" className="px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold text-lg transition-colors text-center">
+                  Get Started as Freelancer
+                </a>
                 <button className="px-8 py-4 border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white rounded-lg font-semibold text-lg transition-colors">
                   {t('hero.watchDemo')}
                 </button>
+              </div>
+
+              {/* Trust Badges */}
+              <div className="flex flex-wrap items-center gap-4 pt-6">
+                <div className="flex items-center space-x-2 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+                  <span>🛡️</span>
+                  <span>RBI Compliant</span>
+                </div>
+                <div className="flex items-center space-x-2 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                  <span>🔒</span>
+                  <span>ISO 27001 Certified</span>
+                </div>
+                <div className="flex items-center space-x-2 bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
+                  <span>💳</span>
+                  <span>PCI DSS Level 1</span>
+                </div>
               </div>
 
               {/* Performance Analytics */}
