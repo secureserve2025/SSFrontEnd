@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Play, CheckCircle, Clock, AlertCircle, DollarSign } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface HeroSectionProps {
   darkMode: boolean;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ darkMode }) => {
+  const { t } = useLanguage();
   const [animationStep, setAnimationStep] = useState(0);
 
   // Animation sequence: 0 = start, 1 = video format, 2 = duration, 3 = resolution, 4 = watermark processing, 5 = watermark complete, 6 = verification passed
@@ -43,28 +45,26 @@ const HeroSection: React.FC<HeroSectionProps> = ({ darkMode }) => {
               <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight ${
                 darkMode ? 'text-white' : 'text-gray-900'
               }`}>
-                India's First{' '}
+                {t('hero.title')}
                 <span className={darkMode ? 'text-blue-400' : 'text-blue-600'}>
                 <span className={darkMode ? 'text-cyan-400' : 'text-purple-600'}>
-                  AI-Powered Escrow Platform
                 </span>{' '}
                 </span>
-                for Freelancers & Clients
               </h1>
               
               <p className={`text-lg sm:text-xl leading-relaxed ${
                 darkMode ? 'text-gray-300' : 'text-gray-600'
               }`}>
-                Protect your work. Pursue your worth.
+                {t('hero.subtitle')}
               </p>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-6">
                 <button className="px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold text-lg transition-colors">
-                  Start Free Trial
+                  {t('hero.startTrial')}
                 </button>
                 <button className="px-8 py-4 border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white rounded-lg font-semibold text-lg transition-colors">
-                  Watch Demo
+                  {t('hero.watchDemo')}
                 </button>
               </div>
 
@@ -79,7 +79,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ darkMode }) => {
                   <div className={`text-sm font-medium ${
                     darkMode ? 'text-gray-400' : 'text-gray-500'
                   }`}>
-                    Happy Customers
+                    {t('hero.happyCustomers')}
                   </div>
                 </div>
                 
@@ -92,7 +92,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ darkMode }) => {
                   <div className={`text-sm font-medium ${
                     darkMode ? 'text-gray-400' : 'text-gray-500'
                   }`}>
-                    Successful Closures
+                    {t('hero.successfulClosures')}
                   </div>
                 </div>
               </div>

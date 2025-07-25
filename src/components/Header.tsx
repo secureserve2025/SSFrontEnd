@@ -1,48 +1,50 @@
 import React, { useState } from 'react';
 import { Shield, Menu, X, Globe, ChevronDown } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface HeaderProps {
   darkMode: boolean;
 }
 
 const Header: React.FC<HeaderProps> = ({ darkMode }) => {
+  const { currentLanguage, changeLanguage, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isExploreOpen, setIsExploreOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   const exploreLinks = [
-    { label: 'How it works', href: '#how-it-works', onClick: () => scrollToSection('how-it-works') },
-    { label: 'FAQs', href: '#faqs', onClick: () => scrollToSection('faqs') },
-    { label: 'Contact us', href: '#contact', onClick: () => scrollToFooter() },
+    { label: t('nav.howItWorks'), href: '#how-it-works', onClick: () => scrollToSection('how-it-works') },
+    { label: t('nav.faqs'), href: '#faqs', onClick: () => scrollToSection('faqs') },
+    { label: t('nav.contact'), href: '#contact', onClick: () => scrollToFooter() },
   ];
 
   const loginOptions = [
-    { label: 'As a Freelancer', href: '/login/freelancer' },
-    { label: 'As a Client', href: '/login/client' },
+    { label: t('nav.asFreelancer'), href: '/login/freelancer' },
+    { label: t('nav.asClient'), href: '/login/client' },
   ];
   
   const quickLinks = [
-    { label: 'Product Demo', href: '#demo' },
-    { label: 'Testimonials', href: '#testimonials' },
-    { label: 'Support', href: '#support' },
-    { label: 'Roadmap', href: '#roadmap' },
-    { label: 'Blog', href: '#blog' }
+    { label: t('nav.productDemo'), href: '#demo' },
+    { label: t('nav.testimonials'), href: '#testimonials' },
+    { label: t('nav.support'), href: '#support' },
+    { label: t('nav.roadmap'), href: '#roadmap' },
+    { label: t('nav.blog'), href: '#blog' }
   ];
   
   const indianLanguages = [
-    { label: 'English', code: 'en' },
-    { label: 'हिंदी (Hindi)', code: 'hi' },
-    { label: 'বাংলা (Bengali)', code: 'bn' },
-    { label: 'తెలుగు (Telugu)', code: 'te' },
-    { label: 'मराठी (Marathi)', code: 'mr' },
-    { label: 'தமிழ் (Tamil)', code: 'ta' },
-    { label: 'ગુજરાતી (Gujarati)', code: 'gu' },
-    { label: 'ಕನ್ನಡ (Kannada)', code: 'kn' },
-    { label: 'മലയാളം (Malayalam)', code: 'ml' },
-    { label: 'ਪੰਜਾਬੀ (Punjabi)', code: 'pa' },
-    { label: 'ଓଡ଼ିଆ (Odia)', code: 'or' },
-    { label: 'অসমীয়া (Assamese)', code: 'as' },
+    { label: 'English', code: 'en', flag: '🇺🇸' },
+    { label: 'हिंदी (Hindi)', code: 'hi', flag: '🇮🇳' },
+    { label: 'বাংলা (Bengali)', code: 'bn', flag: '🇧🇩' },
+    { label: 'తెలుగు (Telugu)', code: 'te', flag: '🇮🇳' },
+    { label: 'मराठी (Marathi)', code: 'mr', flag: '🇮🇳' },
+    { label: 'தமிழ் (Tamil)', code: 'ta', flag: '🇮🇳' },
+    { label: 'ગુજરાતી (Gujarati)', code: 'gu', flag: '🇮🇳' },
+    { label: 'ಕನ್ನಡ (Kannada)', code: 'kn', flag: '🇮🇳' },
+    { label: 'മലയാളം (Malayalam)', code: 'ml', flag: '🇮🇳' },
+    { label: 'ਪੰਜਾਬੀ (Punjabi)', code: 'pa', flag: '🇮🇳' },
+    { label: 'ଓଡ଼ିଆ (Odia)', code: 'or', flag: '🇮🇳' },
+    { label: 'অসমীয়া (Assamese)', code: 'as', flag: '🇮🇳' },
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -90,7 +92,7 @@ const Header: React.FC<HeaderProps> = ({ darkMode }) => {
                     : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
                 }`}
               >
-                <span>Explore</span>
+                <span>{t('nav.explore')}</span>
                 <ChevronDown className={`h-4 w-4 transition-transform ${isExploreOpen ? 'rotate-180' : ''}`} />
               </button>
               
@@ -126,12 +128,13 @@ const Header: React.FC<HeaderProps> = ({ darkMode }) => {
             <div className="relative">
               <button
                 onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+                title={t('nav.changeLanguage')}
                 className={`p-2 rounded-md transition-colors ${
                   darkMode 
                     ? 'text-gray-300 hover:text-white hover:bg-purple-800/50' 
                     : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
                 }`}
-                aria-label="Select language"
+                aria-label={t('nav.changeLanguage')}
               >
                 <Globe className="h-5 w-5" />
               </button>
@@ -144,14 +147,26 @@ const Header: React.FC<HeaderProps> = ({ darkMode }) => {
                   {indianLanguages.map((language) => (
                     <button
                       key={language.code}
+                      onClick={() => {
+                        changeLanguage(language.code);
+                        setIsLanguageOpen(false);
+                      }}
                       className={`block w-full text-left px-4 py-2 text-sm transition-colors ${
+                        currentLanguage === language.code
+                          ? darkMode ? 'bg-purple-700 text-white' : 'bg-purple-100 text-purple-900'
+                          : 
                         darkMode 
                           ? 'text-gray-300 hover:text-white hover:bg-purple-700/50' 
                           : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100'
                       }`}
-                      onClick={() => setIsLanguageOpen(false)}
                     >
-                      {language.label}
+                      <div className="flex items-center space-x-2">
+                        <span>{language.flag}</span>
+                        <span>{language.label}</span>
+                        {currentLanguage === language.code && (
+                          <span className="ml-auto text-purple-500">✓</span>
+                        )}
+                      </div>
                     </button>
                   ))}
                 </div>
@@ -166,7 +181,7 @@ const Header: React.FC<HeaderProps> = ({ darkMode }) => {
                   isLoginOpen ? 'bg-purple-700' : ''
                 }`}
               >
-                <span>Login</span>
+                <span>{t('nav.login')}</span>
                 <ChevronDown className={`h-4 w-4 transition-transform ${isLoginOpen ? 'rotate-180' : ''}`} />
               </button>
               

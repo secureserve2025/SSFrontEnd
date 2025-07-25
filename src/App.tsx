@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { LanguageProvider } from './contexts/LanguageContext';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import BenefitsSection from './components/BenefitsSection';
@@ -11,7 +12,10 @@ import SupportCenter from './components/SupportCenter';
 import ComplianceSection from './components/ComplianceSection';
 import RoadmapSection from './components/RoadmapSection';
 import BlogSection from './components/BlogSection';
-import OnboardingModal from './components/OnboardingModal';
+import EnhancedOnboarding from './components/EnhancedOnboarding';
+import TrustIndicators from './components/TrustIndicators';
+import StripeIntegrationWizard from './components/StripeIntegrationWizard';
+import LegalPages from './components/LegalPages';
 import FAQsSection from './components/FAQsSection';
 import CTASection from './components/CTASection';
 import FreelancerLogin from './pages/FreelancerLogin';
@@ -23,6 +27,7 @@ import ClientDashboard from './pages/ClientDashboard';
 
 function App() {
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const [showStripeWizard, setShowStripeWizard] = useState(false);
   const [onboardingType, setOnboardingType] = useState<'freelancer' | 'client'>('freelancer');
   
   // Always use dark mode
@@ -47,65 +52,95 @@ function App() {
   };
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/login/freelancer" element={<FreelancerLogin />} />
-        <Route path="/login/client" element={<ClientLogin />} />
-        <Route path="/signup/freelancer" element={<FreelancerSignup />} />
-        <Route path="/signup/client" element={<ClientSignup />} />
-        <Route path="/freelancer/dashboard" element={<FreelancerDashboard />} />
-        <Route path="/client/dashboard" element={<ClientDashboard />} />
-        <Route path="/" element={
-          <div className="min-h-screen transition-colors duration-300 bg-gray-900">
-            {/* Header Component */}
-            <Header darkMode={darkMode} />
-            
-            {/* Hero Section */}
-            <HeroSection darkMode={darkMode} />
-            
-            {/* Product Demo Section */}
-            <ProductDemo darkMode={darkMode} />
-            
-            {/* Benefits Section */}
-            <BenefitsSection darkMode={darkMode} />
-            
-            {/* SecureServe Benefits Section */}
-            <SecureServeBenefits darkMode={darkMode} />
-            
-            {/* How It Works Section */}
-            <HowItWorksSection darkMode={darkMode} />
-            
-            {/* Testimonials Section */}
-            <TestimonialsSection darkMode={darkMode} />
-            
-            {/* Support Center */}
-            <SupportCenter darkMode={darkMode} />
-            
-            {/* Compliance Section */}
-            <ComplianceSection darkMode={darkMode} />
-            
-            {/* Roadmap Section */}
-            <RoadmapSection darkMode={darkMode} />
-            
-            {/* Blog Section */}
-            <BlogSection darkMode={darkMode} />
-            
-            {/* FAQs Section */}
-            <FAQsSection darkMode={darkMode} />
-            
-            {/* CTA and Footer Section */}
-            <CTASection darkMode={darkMode} />
-            
-            {/* Onboarding Modal */}
-            <OnboardingModal
-              isOpen={showOnboarding}
-              onClose={() => setShowOnboarding(false)}
-              userType={onboardingType}
-            />
-          </div>
-        } />
-      </Routes>
-    </Router>
+    <LanguageProvider>
+      <Router>
+        <Routes>
+          <Route path="/login/freelancer" element={<FreelancerLogin />} />
+          <Route path="/login/client" element={<ClientLogin />} />
+          <Route path="/signup/freelancer" element={<FreelancerSignup />} />
+          <Route path="/signup/client" element={<ClientSignup />} />
+          <Route path="/freelancer/dashboard" element={<FreelancerDashboard />} />
+          <Route path="/client/dashboard" element={<ClientDashboard />} />
+          <Route path="/legal" element={
+            <div className="min-h-screen transition-colors duration-300 bg-gray-900">
+              <Header darkMode={darkMode} />
+              <div className="pt-16">
+                <LegalPages darkMode={darkMode} />
+              </div>
+            </div>
+          } />
+          <Route path="/" element={
+            <div className="min-h-screen transition-colors duration-300 bg-gray-900">
+              {/* Header Component */}
+              <Header darkMode={darkMode} />
+              
+              {/* Hero Section */}
+              <HeroSection darkMode={darkMode} />
+              
+              {/* Trust Indicators */}
+              <div className="py-8 px-4 sm:px-6 lg:px-8 bg-gray-800">
+                <div className="max-w-7xl mx-auto">
+                  <TrustIndicators darkMode={darkMode} variant="header" />
+                </div>
+              </div>
+              
+              {/* Product Demo Section */}
+              <ProductDemo darkMode={darkMode} />
+              
+              {/* Benefits Section */}
+              <BenefitsSection darkMode={darkMode} />
+              
+              {/* SecureServe Benefits Section */}
+              <SecureServeBenefits darkMode={darkMode} />
+              
+              {/* How It Works Section */}
+              <HowItWorksSection darkMode={darkMode} />
+              
+              {/* Trust Indicators Full */}
+              <div className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-800">
+                <div className="max-w-7xl mx-auto">
+                  <TrustIndicators darkMode={darkMode} variant="inline" />
+                </div>
+              </div>
+              
+              {/* Testimonials Section */}
+              <TestimonialsSection darkMode={darkMode} />
+              
+              {/* Support Center */}
+              <SupportCenter darkMode={darkMode} />
+              
+              {/* Compliance Section */}
+              <ComplianceSection darkMode={darkMode} />
+              
+              {/* Roadmap Section */}
+              <RoadmapSection darkMode={darkMode} />
+              
+              {/* Blog Section */}
+              <BlogSection darkMode={darkMode} />
+              
+              {/* FAQs Section */}
+              <FAQsSection darkMode={darkMode} />
+              
+              {/* CTA and Footer Section */}
+              <CTASection darkMode={darkMode} />
+              
+              {/* Enhanced Onboarding Modal */}
+              <EnhancedOnboarding
+                isOpen={showOnboarding}
+                onClose={() => setShowOnboarding(false)}
+                userType={onboardingType}
+              />
+              
+              {/* Stripe Integration Wizard */}
+              <StripeIntegrationWizard
+                isOpen={showStripeWizard}
+                onClose={() => setShowStripeWizard(false)}
+              />
+            </div>
+          } />
+        </Routes>
+      </Router>
+    </LanguageProvider>
   );
 }
 
