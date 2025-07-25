@@ -21,6 +21,15 @@ const Header: React.FC<HeaderProps> = ({ darkMode }) => {
     { label: 'As a Freelancer', href: '/login/freelancer' },
     { label: 'As a Client', href: '/login/client' },
   ];
+  
+  const quickLinks = [
+    { label: 'Product Demo', href: '#demo' },
+    { label: 'Testimonials', href: '#testimonials' },
+    { label: 'Support', href: '#support' },
+    { label: 'Roadmap', href: '#roadmap' },
+    { label: 'Blog', href: '#blog' }
+  ];
+  
   const indianLanguages = [
     { label: 'English', code: 'en' },
     { label: 'हिंदी (Hindi)', code: 'hi' },

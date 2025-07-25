@@ -58,6 +58,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({ darkMode }) => {
                 Protect your work. Pursue your worth.
               </p>
 
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                <button className="px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold text-lg transition-colors">
+                  Start Free Trial
+                </button>
+                <button className="px-8 py-4 border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white rounded-lg font-semibold text-lg transition-colors">
+                  Watch Demo
+                </button>
+              </div>
+
               {/* Performance Analytics */}
               <div className="grid grid-cols-2 gap-8 pt-8 max-w-md mx-auto">
                 <div className="text-center">

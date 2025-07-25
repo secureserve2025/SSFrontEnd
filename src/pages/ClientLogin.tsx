@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Shield, Building, Mail, Lock, Eye, EyeOff, ArrowLeft, Users, CheckCircle, Zap } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { signIn } from '../lib/supabase';
+import OnboardingModal from '../components/OnboardingModal';
 
 const ClientLogin: React.FC = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showOnboarding, setShowOnboarding] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -214,6 +216,14 @@ const ClientLogin: React.FC = () => {
                   Sign up here
                 </Link>
               </p>
+              <div className="mt-4">
+                <button
+                  onClick={() => setShowOnboarding(true)}
+                  className="text-purple-400 hover:text-purple-300 text-sm underline"
+                >
+                  New to SecureServe? Take a quick tour
+                </button>
+              </div>
             </div>
           </div>
 
@@ -236,6 +246,13 @@ const ClientLogin: React.FC = () => {
           </div>
         </div>
       </div>
+      
+      {/* Onboarding Modal */}
+      <OnboardingModal
+        isOpen={showOnboarding}
+        onClose={() => setShowOnboarding(false)}
+        userType="client"
+      />
     </div>
   )
 };
