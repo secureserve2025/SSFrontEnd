@@ -50,8 +50,8 @@ const LiveStats: React.FC<LiveStatsProps> = ({ darkMode, variant = 'hero' }) => 
       icon: Users,
       label: 'Active Users',
       value: stats.totalUsers.toLocaleString() + '+',
-      color: 'text-blue-500',
-      bgColor: darkMode ? 'bg-blue-900/20' : 'bg-blue-100',
+      color: 'text-purple-500',
+      bgColor: darkMode ? 'bg-purple-900/20' : 'bg-purple-100',
       growth: '+40% this month'
     },
     {
@@ -66,16 +66,16 @@ const LiveStats: React.FC<LiveStatsProps> = ({ darkMode, variant = 'hero' }) => 
       icon: Shield,
       label: 'Funds Secured',
       value: formatCurrency(stats.fundsSecured),
-      color: 'text-purple-500',
-      bgColor: darkMode ? 'bg-purple-900/20' : 'bg-purple-100',
+      color: 'text-cyan-500',
+      bgColor: darkMode ? 'bg-cyan-900/20' : 'bg-cyan-100',
       growth: 'In escrow'
     },
     {
       icon: TrendingUp,
       label: 'Success Rate',
       value: stats.disputesResolved + '%',
-      color: 'text-cyan-500',
-      bgColor: darkMode ? 'bg-cyan-900/20' : 'bg-cyan-100',
+      color: 'text-blue-500',
+      bgColor: darkMode ? 'bg-blue-900/20' : 'bg-blue-100',
       growth: 'Dispute resolution'
     }
   ];

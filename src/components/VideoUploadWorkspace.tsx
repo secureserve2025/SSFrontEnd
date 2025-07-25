@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from 'react';
-import { Upload, Play, CheckCircle, AlertCircle, X, Download, Eye, Wand2, Clock, FileVideo, Volume2 } from 'lucide-react';
+import { Upload, Play, CheckCircle, AlertCircle, X, Download, Eye, Wand2, Clock, FileVideo, Volume2, ChevronDown } from 'lucide-react';
 
 interface VideoUploadWorkspaceProps {
   userType: 'freelancer' | 'client';
@@ -33,46 +33,47 @@ const VideoUploadWorkspace: React.FC<VideoUploadWorkspaceProps> = ({
 }) => {
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
   const [isDragOver, setIsDragOver] = useState(false);
+  const [showChecklist, setShowChecklist] = useState(false);
   const [checklist, setChecklist] = useState<ChecklistItem[]>([
     {
       id: 'format',
-      label: 'Video format matches agreed spec',
-      description: 'Verify MP4/1080p format as specified',
+      label: 'Video format matches agreed spec (e.g., MP4/1080p)',
+      description: 'Verify the video format and resolution meet specifications',
       checked: false,
       aiSuggestion: 'Check if video is in MP4 format with 1080p resolution'
     },
     {
       id: 'duration',
-      label: 'Duration as required',
-      description: 'Confirm video length meets specifications',
+      label: 'Duration as required (e.g., 60s)',
+      description: 'Confirm the video length meets the agreed duration',
       checked: false,
       aiSuggestion: 'Verify video duration matches the agreed timeline (e.g., 60 seconds)'
     },
     {
       id: 'watermark',
       label: 'No visible watermark',
-      description: 'Ensure no unauthorized watermarks present',
+      description: 'Ensure no unauthorized watermarks are present in the video',
       checked: false,
       aiSuggestion: 'Scan for any visible watermarks or logos that weren\'t requested'
     },
     {
       id: 'audio',
       label: 'Audio is clear and synchronized',
-      description: 'Check audio quality and lip-sync',
+      description: 'Verify audio quality and synchronization with video',
       checked: false,
       aiSuggestion: 'Listen for clear audio without distortion and proper synchronization'
     },
     {
       id: 'content',
       label: 'Content meets all described requirements',
-      description: 'Verify all project requirements are fulfilled',
+      description: 'Confirm all project requirements and specifications are met',
       checked: false,
       aiSuggestion: 'Review against original project brief and requirements document'
     },
     {
       id: 'edits',
       label: 'All requested edits delivered',
-      description: 'Confirm all revision requests have been addressed',
+      description: 'Verify all revision requests and feedback have been addressed',
       checked: false,
       aiSuggestion: 'Cross-check with any revision notes or feedback provided'
     }
@@ -83,7 +84,7 @@ const VideoUploadWorkspace: React.FC<VideoUploadWorkspaceProps> = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dragCounterRef = useRef(0);
 
-  const supportedFormats = ['video/mp4', 'video/mov', 'video/avi', 'video/mkv'];
+  const supportedFormats = ['video/mp4', 'video/mov'];
   const maxFileSize = 500 * 1024 * 1024; // 500MB
 
   const handleDragEnter = useCallback((e: React.DragEvent) => {
@@ -247,7 +248,7 @@ const VideoUploadWorkspace: React.FC<VideoUploadWorkspaceProps> = ({
               {isDragOver ? 'Drop your video here' : 'Upload your deliverable video here'}
             </p>
             <p className="text-sm text-gray-400 mb-4">
-              Supported formats: MP4, MOV, AVI, MKV. Max size: 500MB
+              Upload your deliverable video here. Supported formats: MP4, MOV. Max size: 500MB.
             </p>
             <button
               onClick={() => fileInputRef.current?.click()}
@@ -258,7 +259,7 @@ const VideoUploadWorkspace: React.FC<VideoUploadWorkspaceProps> = ({
             <input
               ref={fileInputRef}
               type="file"
-              accept="video/*"
+              accept=".mp4,.mov"
               onChange={handleFileSelect}
               className="hidden"
               multiple
@@ -342,11 +343,8 @@ const VideoUploadWorkspace: React.FC<VideoUploadWorkspaceProps> = ({
           <div className="flex items-center justify-between mb-6">
             <div>
               <h3 className="text-xl font-semibold text-white mb-2">
-                Client Approval Checklist
+                Client Approval Checklist: Please confirm the following before releasing payment
               </h3>
-              <p className="text-gray-300">
-                Please confirm the following before releasing payment
-              </p>
             </div>
             <div className="text-right">
               <div className="text-2xl font-bold text-purple-400">
@@ -356,56 +354,70 @@ const VideoUploadWorkspace: React.FC<VideoUploadWorkspaceProps> = ({
             </div>
           </div>
 
-          {/* AI Suggestions Button */}
-          <div className="mb-6">
+          {/* Show Checklist Button */}
+          <div className="mb-4">
             <button
-              onClick={generateAISuggestions}
-              disabled={isGeneratingAI}
-              className="flex items-center space-x-2 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 disabled:bg-gray-600 text-white rounded-lg font-medium transition-colors"
+              onClick={() => setShowChecklist(!showChecklist)}
+              className="flex items-center space-x-2 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium transition-colors"
             >
-              {isGeneratingAI ? (
-                <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full"></div>
-              ) : (
-                <Wand2 className="h-4 w-4" />
-              )}
-              <span>
-                {isGeneratingAI ? 'Generating...' : 'Get AI suggestions for review criteria'}
-              </span>
+              <span>{showChecklist ? 'Hide Checklist' : 'Show Checklist'}</span>
+              <ChevronDown className={`h-4 w-4 transition-transform ${showChecklist ? 'rotate-180' : ''}`} />
             </button>
           </div>
 
-          {/* Checklist Items */}
-          <div className="space-y-4">
-            {checklist.map((item) => (
-              <div key={item.id} className="bg-gray-700 rounded-lg p-4">
-                <div className="flex items-start space-x-3">
-                  <input
-                    type="checkbox"
-                    id={item.id}
-                    checked={item.checked}
-                    onChange={(e) => handleChecklistChange(item.id, e.target.checked)}
-                    className="mt-1 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-600 rounded bg-gray-700"
-                  />
-                  <div className="flex-1">
-                    <label htmlFor={item.id} className="text-white font-medium cursor-pointer">
-                      {item.label}
-                    </label>
-                    <p className="text-gray-400 text-sm mt-1">{item.description}</p>
-                    
-                    {showAISuggestions && item.aiSuggestion && (
-                      <div className="mt-2 p-3 bg-cyan-900/20 border border-cyan-500/30 rounded-lg">
-                        <div className="flex items-center space-x-2 mb-1">
-                          <Wand2 className="h-4 w-4 text-cyan-400" />
-                          <span className="text-cyan-400 text-sm font-medium">AI Suggestion</span>
+          {/* Collapsible Checklist */}
+          {showChecklist && (
+            <div className="space-y-4 mb-6">
+              {/* AI Suggestions Button */}
+              <div className="mb-4">
+                <button
+                  onClick={generateAISuggestions}
+                  disabled={isGeneratingAI}
+                  className="flex items-center space-x-2 px-4 py-2 bg-cyan-600 hover:bg-cyan-700 disabled:bg-gray-600 text-white rounded-lg font-medium transition-colors"
+                >
+                  {isGeneratingAI ? (
+                    <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full"></div>
+                  ) : (
+                    <Wand2 className="h-4 w-4" />
+                  )}
+                  <span>
+                    {isGeneratingAI ? 'Generating...' : 'Get suggestions for review criteria'}
+                  </span>
+                </button>
+              </div>
+
+              {/* Checklist Items */}
+              {checklist.map((item) => (
+                <div key={item.id} className="bg-gray-700 rounded-lg p-4">
+                  <div className="flex items-start space-x-3">
+                    <input
+                      type="checkbox"
+                      id={item.id}
+                      checked={item.checked}
+                      onChange={(e) => handleChecklistChange(item.id, e.target.checked)}
+                      className="mt-1 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-600 rounded bg-gray-700"
+                    />
+                    <div className="flex-1">
+                      <label htmlFor={item.id} className="text-white font-medium cursor-pointer">
+                        {item.label}
+                      </label>
+                      <p className="text-gray-400 text-sm mt-1">{item.description}</p>
+                      
+                      {showAISuggestions && item.aiSuggestion && (
+                        <div className="mt-2 p-3 bg-cyan-900/20 border border-cyan-500/30 rounded-lg">
+                          <div className="flex items-center space-x-2 mb-1">
+                            <Wand2 className="h-4 w-4 text-cyan-400" />
+                            <span className="text-cyan-400 text-sm font-medium">AI Suggestion</span>
+                          </div>
+                          <p className="text-cyan-300 text-sm">{item.aiSuggestion}</p>
                         </div>
-                        <p className="text-cyan-300 text-sm">{item.aiSuggestion}</p>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
 
           {/* Progress Bar */}
           <div className="mt-6">

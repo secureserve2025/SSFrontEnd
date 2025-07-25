@@ -124,21 +124,11 @@ function App() {
                 {/* How It Works Section */}
                 <HowItWorksSection darkMode={darkMode} />
                 
-                {/* Trust Indicators Full */}
-                <div className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-800">
-                  <div className="max-w-7xl mx-auto">
-                    <TrustIndicators darkMode={darkMode} variant="inline" />
-                  </div>
-                </div>
-                
                 {/* Testimonials Section */}
                 <TestimonialsSection darkMode={darkMode} />
                 
                 {/* Support Center */}
                 <SupportCenter darkMode={darkMode} />
-                
-                {/* Compliance Section */}
-                <ComplianceSection darkMode={darkMode} />
                 
                 {/* Roadmap Section */}
                 <RoadmapSection darkMode={darkMode} />
@@ -164,6 +154,15 @@ function App() {
                   isOpen={showStripeWizard}
                   onClose={() => setShowStripeWizard(false)}
                 />
+              </div>
+            } />
+            <Route path="/compliance" element={
+              <div className="min-h-screen transition-colors duration-300 bg-gray-900">
+                <Header darkMode={darkMode} />
+                <div className="pt-16">
+                  <ComplianceSection darkMode={darkMode} />
+                  <ComplianceOfficerProfile darkMode={darkMode} />
+                </div>
               </div>
             } />
           </Routes>

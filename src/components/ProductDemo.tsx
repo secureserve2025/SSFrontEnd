@@ -12,27 +12,27 @@ const ProductDemo: React.FC<ProductDemoProps> = ({ darkMode }) => {
 
   const demoScreens = [
     {
-      id: 'dashboard',
-      title: 'Freelancer Dashboard',
-      description: 'Complete overview of projects, earnings, and verification status',
+      id: 'platform-overview',
+      title: 'Platform Overview',
+      description: 'Secure escrow platform connecting freelancers and clients',
       image: 'https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=800'
     },
     {
-      id: 'project-creation',
-      title: 'AI-Assisted Project Creation',
-      description: 'Smart contract generation with detailed deliverable checklists',
+      id: 'project-workflow',
+      title: 'Project Workflow',
+      description: 'End-to-end project management from creation to completion',
       image: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800'
     },
     {
-      id: 'verification',
-      title: 'AI Verification Process',
-      description: 'Real-time quality checking and automated approval system',
+      id: 'secure-payments',
+      title: 'Secure Payment System',
+      description: 'Escrow-based payments with automated release',
       image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800'
     },
     {
-      id: 'payments',
-      title: 'Secure Payment Flow',
-      description: 'Escrow management and instant payment release',
+      id: 'quality-assurance',
+      title: 'Quality Assurance',
+      description: 'Automated quality checks and verification system',
       image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800'
     }
   ];

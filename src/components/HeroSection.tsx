@@ -60,27 +60,27 @@ const HeroSection: React.FC<HeroSectionProps> = ({ darkMode }) => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                <a href="/signup/freelancer" className="px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold text-lg transition-colors text-center">
-                  Get Started as Freelancer
+                <a href="/signup/client" className="px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold text-lg transition-colors text-center">
+                  Start Your Project
                 </a>
                 <button className="px-8 py-4 border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white rounded-lg font-semibold text-lg transition-colors">
                   {t('hero.watchDemo')}
                 </button>
               </div>
 
-              {/* Trust Badges */}
+              {/* Value Propositions */}
               <div className="flex flex-wrap items-center gap-4 pt-6">
                 <div className="flex items-center space-x-2 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
                   <span>🛡️</span>
-                  <span>RBI Compliant</span>
+                  <span>Secure Escrow</span>
                 </div>
                 <div className="flex items-center space-x-2 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                  <span>🔒</span>
-                  <span>ISO 27001 Certified</span>
+                  <span>🤖</span>
+                  <span>AI Verification</span>
                 </div>
                 <div className="flex items-center space-x-2 bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
-                  <span>💳</span>
-                  <span>PCI DSS Level 1</span>
+                  <span>⚡</span>
+                  <span>Instant Payments</span>
                 </div>
               </div>
 
@@ -117,199 +117,50 @@ const HeroSection: React.FC<HeroSectionProps> = ({ darkMode }) => {
 
           {/* Right Content - Dashboard Mockup */}
           <div className="relative">
-            {/* Main Dashboard Card */}
-            <div className={`rounded-2xl p-6 shadow-2xl animate-swing ${
+            {/* Project Status Card */}
+            <div className={`rounded-2xl p-6 shadow-2xl ${
               darkMode ? 'bg-gray-800 border border-purple-500/30' : 'bg-white border border-gray-200'
             }`}>
-              {/* Project Header */}
+              {/* Upload Status */}
               <div className="mb-6">
-                <h3 className={`text-xl font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                  Video Editing Project Uploaded
+                <h3 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                  Project Upload Status
                 </h3>
-                <div className="w-full bg-purple-200 rounded-full h-2">
-                  <div 
-                    className="bg-purple-500 h-2 rounded-full transition-all duration-1000 ease-out" 
-                    style={{ width: `${Math.min(85, (animationStep / 6) * 85)}%` }}
-                  ></div>
+                
+                {/* Upload Success State */}
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                    <span className="font-medium text-green-800">Upload Successful</span>
+                  </div>
+                  <p className="text-green-700 text-sm">
+                    corporate_video_final.mp4 • 45.2 MB • Uploaded 2 minutes ago
+                  </p>
                 </div>
-                <div className={`flex items-center justify-between mt-2 text-sm ${
-                  darkMode ? 'text-gray-400' : 'text-gray-500'
-                }`}>
-                  <div className="flex items-center space-x-1">
-                    <Clock className="h-4 w-4" />
-                    <span>2 min ago</span>
+                
+                {/* Video Preview */}
+                <div className="bg-gray-100 rounded-lg p-4 mb-4">
+                  <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center mb-2">
+                    <Play className="h-12 w-12 text-gray-400" />
                   </div>
+                  <p className="text-sm text-gray-600 text-center">Video Preview Available</p>
                 </div>
-              </div>
-
-              {/* AI Verification Results */}
-              <div className="space-y-4 mb-6">
-                <h4 className={`font-semibold flex items-center space-x-2 ${
-                  darkMode ? 'text-white' : 'text-gray-900'
-                }`}>
-                  <span>📋</span>
-                  <span>AI Verification Results</span>
-                </h4>
-
-                {/* Verification Items */}
-                <div className="space-y-3">
-                  {/* Video Format */}
-                  <div 
-                    className={`transition-all duration-500 ${
-                      getFieldState(1) === 'hidden' 
-                        ? 'opacity-0 transform translate-y-4' 
-                        : 'opacity-100 transform translate-y-0'
-                    }`}
-                  >
-                    <div className={`p-3 rounded-lg border transition-all duration-500 ${
-                      getFieldState(1) === 'completed'
-                        ? darkMode ? 'bg-green-900/20 border-green-700' : 'bg-green-50 border-green-200'
-                        : darkMode ? 'bg-yellow-900/20 border-yellow-700' : 'bg-yellow-50 border-yellow-200'
-                    }`}>
-                      <div className={`flex items-center space-x-2 transition-colors duration-500 ${
-                        getFieldState(1) === 'completed' ? 'text-green-700' : 'text-yellow-700'
-                      }`}>
-                        {getFieldState(1) === 'completed' ? (
-                          <CheckCircle className="h-4 w-4" />
-                        ) : (
-                          <div className="h-4 w-4 border-2 border-yellow-600 border-t-transparent rounded-full animate-spin"></div>
-                        )}
-                        <span className="font-medium">
-                          Video Format: MP4 {getFieldState(1) === 'completed' ? '✓' : ''}
-                        </span>
-                      </div>
-                      <div className={`text-sm mt-1 transition-colors duration-500 ${
-                        getFieldState(1) === 'completed' ? 'text-green-600' : 'text-yellow-600'
-                      }`}>
-                        {getFieldState(1) === 'completed' ? 'Matches requirement' : 'Checking format...'}
-                      </div>
-                    </div>
+                
+                {/* Processing Status */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                    <span className="font-medium text-blue-800">AI Verification in Progress</span>
                   </div>
-
-                  {/* Duration */}
-                  <div 
-                    className={`transition-all duration-500 ${
-                      getFieldState(2) === 'hidden' 
-                        ? 'opacity-0 transform translate-y-4' 
-                        : 'opacity-100 transform translate-y-0'
-                    }`}
-                  >
-                    <div className={`p-3 rounded-lg border transition-all duration-500 ${
-                      getFieldState(2) === 'completed'
-                        ? darkMode ? 'bg-green-900/20 border-green-700' : 'bg-green-50 border-green-200'
-                        : darkMode ? 'bg-yellow-900/20 border-yellow-700' : 'bg-yellow-50 border-yellow-200'
-                    }`}>
-                      <div className={`flex items-center space-x-2 transition-colors duration-500 ${
-                        getFieldState(2) === 'completed' ? 'text-green-700' : 'text-yellow-700'
-                      }`}>
-                        {getFieldState(2) === 'completed' ? (
-                          <CheckCircle className="h-4 w-4" />
-                        ) : (
-                          <div className="h-4 w-4 border-2 border-yellow-600 border-t-transparent rounded-full animate-spin"></div>
-                        )}
-                        <span className="font-medium">
-                          Duration: 60 seconds {getFieldState(2) === 'completed' ? '✓' : ''}
-                        </span>
-                      </div>
-                      <div className={`text-sm mt-1 transition-colors duration-500 ${
-                        getFieldState(2) === 'completed' ? 'text-green-600' : 'text-yellow-600'
-                      }`}>
-                        {getFieldState(2) === 'completed' ? 'Perfect match' : 'Analyzing duration...'}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Resolution */}
-                  <div 
-                    className={`transition-all duration-500 ${
-                      getFieldState(3) === 'hidden' 
-                        ? 'opacity-0 transform translate-y-4' 
-                        : 'opacity-100 transform translate-y-0'
-                    }`}
-                  >
-                    <div className={`p-3 rounded-lg border transition-all duration-500 ${
-                      getFieldState(3) === 'completed'
-                        ? darkMode ? 'bg-green-900/20 border-green-700' : 'bg-green-50 border-green-200'
-                        : darkMode ? 'bg-yellow-900/20 border-yellow-700' : 'bg-yellow-50 border-yellow-200'
-                    }`}>
-                      <div className={`flex items-center space-x-2 transition-colors duration-500 ${
-                        getFieldState(3) === 'completed' ? 'text-green-700' : 'text-yellow-700'
-                      }`}>
-                        {getFieldState(3) === 'completed' ? (
-                          <CheckCircle className="h-4 w-4" />
-                        ) : (
-                          <div className="h-4 w-4 border-2 border-yellow-600 border-t-transparent rounded-full animate-spin"></div>
-                        )}
-                        <span className="font-medium">
-                          Resolution: 1080p HD {getFieldState(3) === 'completed' ? '✓' : ''}
-                        </span>
-                      </div>
-                      <div className={`text-sm mt-1 transition-colors duration-500 ${
-                        getFieldState(3) === 'completed' ? 'text-green-600' : 'text-yellow-600'
-                      }`}>
-                        {getFieldState(3) === 'completed' ? 'High quality confirmed' : 'Checking quality...'}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Watermark Check */}
-                  <div 
-                    className={`transition-all duration-500 ${
-                      getWatermarkState() === 'hidden' 
-                        ? 'opacity-0 transform translate-y-4' 
-                        : 'opacity-100 transform translate-y-0'
-                    }`}
-                  >
-                    <div className={`p-3 rounded-lg border transition-all duration-500 ${
-                      getWatermarkState() === 'completed'
-                        ? darkMode ? 'bg-green-900/20 border-green-700' : 'bg-green-50 border-green-200'
-                        : darkMode ? 'bg-yellow-900/20 border-yellow-700' : 'bg-yellow-50 border-yellow-200'
-                    }`}>
-                      <div className={`flex items-center space-x-2 transition-colors duration-500 ${
-                        getWatermarkState() === 'completed' ? 'text-green-700' : 'text-yellow-700'
-                      }`}>
-                        {getWatermarkState() === 'completed' ? (
-                          <CheckCircle className="h-4 w-4" />
-                        ) : (
-                          <div className="h-4 w-4 border-2 border-yellow-600 border-t-transparent rounded-full animate-spin"></div>
-                        )}
-                        <span className="font-medium">
-                          Watermark Check {getWatermarkState() === 'completed' ? '✓' : ''}
-                        </span>
-                      </div>
-                      <div className={`text-sm mt-1 transition-colors duration-500 ${
-                        getWatermarkState() === 'completed' ? 'text-green-600' : 'text-yellow-600'
-                      }`}>
-                        {getWatermarkState() === 'completed' ? 'No watermarks detected' : 'Processing...'}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Verification Status */}
-              <div 
-                className={`flex items-center justify-center mb-6 transition-all duration-500 ${
-                  animationStep >= 6 
-                    ? 'opacity-100 transform translate-y-0' 
-                    : 'opacity-0 transform translate-y-4'
-                }`}
-              >
-                <div className="flex items-center space-x-2 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
-                  <CheckCircle className="h-4 w-4" />
-                  <span>Verification Passed</span>
+                  <p className="text-blue-700 text-sm">
+                    Analyzing video quality and requirements compliance...
+                  </p>
                 </div>
               </div>
 
               {/* Payment Section */}
               <div className="flex space-x-3">
-                <button className={`flex-1 px-4 py-3 rounded-lg font-medium transition-all duration-500 flex items-center justify-center space-x-2 border ${
-                  animationStep >= 6
-                    ? 'bg-purple-600 hover:bg-purple-700 text-white border-purple-500'
-                    : darkMode 
-                      ? 'border-purple-500/30 text-gray-300 hover:bg-purple-800/50' 
-                      : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-                }`}>
+                <button className="flex-1 px-4 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white">
                   <span>Release Funds</span>
                 </button>
                 <button className={`px-4 py-3 rounded-lg font-medium transition-colors border ${
