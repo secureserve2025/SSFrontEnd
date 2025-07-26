@@ -117,67 +117,30 @@ const HeroSection: React.FC<HeroSectionProps> = ({ darkMode }) => {
 
           {/* Right Content - Dashboard Mockup */}
           <div className="relative">
-            {/* Project Status Card */}
-            <div className={`rounded-2xl p-6 shadow-2xl ${
+            {/* Simple Dashboard Preview */}
+            <div className={`rounded-2xl p-8 shadow-2xl ${
               darkMode ? 'bg-gray-800 border border-purple-500/30' : 'bg-white border border-gray-200'
             }`}>
-              {/* Upload Status */}
-              <div className="mb-6">
-                <h3 className={`text-xl font-semibold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                  Project Upload Status
-                </h3>
-                
-                {/* Upload Success State */}
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <CheckCircle className="h-5 w-5 text-green-600" />
-                    <span className="font-medium text-green-800">Upload Successful</span>
-                  </div>
-                  <p className="text-green-700 text-sm">
-                    corporate_video_final.mp4 • 45.2 MB • Uploaded 2 minutes ago
-                  </p>
+              <div className="text-center">
+                <div className={`text-3xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                  Your Secure Workspace
                 </div>
-                
-                {/* Video Preview */}
-                <div className="bg-gray-100 rounded-lg p-4 mb-4">
-                  <div className="aspect-video bg-gray-200 rounded-lg flex items-center justify-center mb-2">
-                    <Play className="h-12 w-12 text-gray-400" />
+                <p className={`text-lg mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  Manage projects, track payments, and communicate securely
+                </p>
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
+                    <div className="text-2xl font-bold text-purple-600">15,247+</div>
+                    <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Active Users</div>
                   </div>
-                  <p className="text-sm text-gray-600 text-center">Video Preview Available</p>
-                </div>
-                
-                {/* Processing Status */}
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                    <span className="font-medium text-blue-800">AI Verification in Progress</span>
+                  <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
+                    <div className="text-2xl font-bold text-cyan-600">₹50L+</div>
+                    <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Secured</div>
                   </div>
-                  <p className="text-blue-700 text-sm">
-                    Analyzing video quality and requirements compliance...
-                  </p>
                 </div>
-              </div>
-
-              {/* Payment Section */}
-              <div className="flex space-x-3">
-                <button className="flex-1 px-4 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white">
-                  <span>Release Funds</span>
+                <button className="w-full px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors">
+                  Get Started Today
                 </button>
-                <button className={`px-4 py-3 rounded-lg font-medium transition-colors border ${
-                  darkMode 
-                    ? 'border-purple-500/30 text-gray-300' 
-                    : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-                }`}>
-                  Request Revision
-                </button>
-              </div>
-
-              {/* Amount Display */}
-              <div className="mt-4 text-center">
-                <div className="text-2xl font-bold text-cyan-400">₹25,000</div>
-                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                  In Escrow
-                </div>
               </div>
             </div>
           </div>

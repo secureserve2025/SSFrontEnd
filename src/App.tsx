@@ -133,9 +133,6 @@ function App() {
                 {/* Roadmap Section */}
                 <RoadmapSection darkMode={darkMode} />
                 
-                {/* Blog Section */}
-                <BlogSection darkMode={darkMode} />
-                
                 {/* FAQs Section */}
                 <FAQsSection darkMode={darkMode} />
                 
