@@ -183,8 +183,6 @@ import ContactUs from './components/ContactUs';
             } />
           </Routes>
         </Router>
-      </AIProvider>
-    </LanguageProvider>
   );
 }
 
