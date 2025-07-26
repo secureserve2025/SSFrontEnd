@@ -30,6 +30,17 @@ import FreelancerDashboard from './pages/FreelancerDashboard';
 import ClientDashboard from './pages/ClientDashboard';
 import ContactUs from './components/ContactUs';
 
+function AppContent() {
+  const { t } = useLanguage();
+  const [darkMode, setDarkMode] = useState(true);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [onboardingType, setOnboardingType] = useState('');
+  const [showStripeWizard, setShowStripeWizard] = useState(false);
+
+  return (
+    <Router>
+      <div className="App">
+        <Router>
           <Routes>
             <Route path="/login/freelancer" element={<FreelancerLogin />} />
             <Route path="/login/client" element={<ClientLogin />} />
@@ -183,6 +194,8 @@ import ContactUs from './components/ContactUs';
             } />
           </Routes>
         </Router>
+      </div>
+    </Router>
   );
 }
 
