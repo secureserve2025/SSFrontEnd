@@ -3,6 +3,7 @@ import { User, Briefcase, CreditCard, MessageSquare, CheckCircle, Clock, Shield,
 import { Link, useNavigate } from 'react-router-dom';
 import { getCurrentUser, signOut } from '../lib/supabase';
 import AddProjectForm from '../components/AddProjectForm';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface ProfileData {
   companyName: string;
@@ -24,11 +25,11 @@ const ClientDashboard: React.FC = () => {
   const navigate = useNavigate();
 
   const tabs = [
-    { id: 'profile', label: 'Profile', icon: User },
-    { id: 'add-project', label: 'Add Project', icon: Plus },
-    { id: 'projects', label: 'My Projects', icon: Briefcase },
-    { id: 'transactions', label: 'Transactions', icon: CreditCard },
-    { id: 'messages', label: 'Messages', icon: MessageSquare }
+    { id: 'profile', label: t('dashboard.profile'), icon: User },
+    { id: 'add-project', label: t('client.addProject'), icon: Plus },
+    { id: 'projects', label: t('dashboard.projects'), icon: Briefcase },
+    { id: 'transactions', label: t('dashboard.transactions'), icon: CreditCard },
+    { id: 'messages', label: t('dashboard.messages'), icon: MessageSquare }
   ];
 
   useEffect(() => {
@@ -61,8 +62,8 @@ const ClientDashboard: React.FC = () => {
   const renderProfileContent = () => {
     return (
       <div className="bg-gray-800 rounded-2xl p-6 sm:p-8 border border-gray-700">
-        <h2 className="text-lg sm:text-xl font-semibold text-white mb-4">Profile Information</h2>
-        <p className="text-sm sm:text-base text-gray-400">Manage your profile settings and information.</p>
+        <h2 className="text-lg sm:text-xl font-semibold text-white mb-4">{t('dashboard.profileInformation')}</h2>
+        <p className="text-sm sm:text-base text-gray-400">{t('dashboard.manageProfile')}</p>
       </div>
     );
   };
@@ -73,15 +74,15 @@ const ClientDashboard: React.FC = () => {
       <div className="bg-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 border border-gray-700">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 sm:mb-8 space-y-4 sm:space-y-0">
           <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">My Projects</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">{t('dashboard.projects')}</h2>
             <p className="text-sm sm:text-base text-gray-300">
-              Manage and track your active and completed projects
+              {t('client.manageProjects')}
             </p>
           </div>
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2 text-sm text-gray-400">
               <Briefcase className="h-4 w-4" aria-hidden="true" />
-              <span>0 Total Projects</span>
+              <span>0 {t('client.totalProjects')}</span>
             </div>
             <button
               onClick={() => setActiveTab('add-project')}
@@ -89,7 +90,7 @@ const ClientDashboard: React.FC = () => {
               aria-label="Add new project"
             >
               <Plus className="h-4 w-4" aria-hidden="true" />
-              <span className="hidden sm:inline">New Project</span>
+              <span className="hidden sm:inline">{t('client.newProject')}</span>
             </button>
           </div>
         </div>
@@ -100,13 +101,13 @@ const ClientDashboard: React.FC = () => {
             {/* Table Header */}
             <div className="bg-gray-700 rounded-t-lg">
               <div className="grid grid-cols-7 gap-4 p-4 text-sm font-semibold text-gray-300">
-                <div className="text-left">Project ID</div>
-                <div className="text-left">Project Name</div>
-                <div className="text-left">Freelancer ID</div>
-                <div className="text-center">Status</div>
-                <div className="text-center">Deliverable List</div>
-                <div className="text-center">Work Product</div>
-                <div className="text-center">Verification Report</div>
+                <div className="text-left">{t('dashboard.projectId')}</div>
+                <div className="text-left">{t('dashboard.projectName')}</div>
+                <div className="text-left">{t('dashboard.freelancerId')}</div>
+                <div className="text-center">{t('dashboard.status')}</div>
+                <div className="text-center">{t('dashboard.deliverableList')}</div>
+                <div className="text-center">{t('dashboard.workProduct')}</div>
+                <div className="text-center">{t('dashboard.verificationReport')}</div>
               </div>
             </div>
 
@@ -119,11 +120,10 @@ const ClientDashboard: React.FC = () => {
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-lg sm:text-xl font-semibold text-white">
-                      No Projects Yet
+                      {t('dashboard.noProjectsYet')}
                     </h3>
                     <p className="text-sm sm:text-base text-gray-400 max-w-md">
-                      Start your first project by clicking the "New Project" button above. 
-                      Connect with talented freelancers and bring your ideas to life.
+                      {t('client.projectsWillAppear')}
                     </p>
                   </div>
                   <div className="pt-4">
@@ -133,7 +133,7 @@ const ClientDashboard: React.FC = () => {
                       aria-label="Create your first project"
                     >
                       <Plus className="h-4 w-4" aria-hidden="true" />
-                      <span>Create First Project</span>
+                      <span>{t('client.createFirstProject')}</span>
                     </button>
                   </div>
                 </div>
@@ -144,23 +144,23 @@ const ClientDashboard: React.FC = () => {
 
         {/* Status Legend */}
         <div className="mt-6 p-4 bg-gray-700 rounded-lg">
-          <h4 className="text-sm font-semibold text-gray-300 mb-3">Project Status Legend:</h4>
+          <h4 className="text-sm font-semibold text-gray-300 mb-3">{t('status.projectStatusLegend')}</h4>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs sm:text-sm">
             <div className="flex items-center space-x-2">
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <span className="text-gray-300">Complete</span>
+              <span className="text-gray-300">{t('status.complete')}</span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-              <span className="text-gray-300">Active</span>
+              <span className="text-gray-300">{t('status.active')}</span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-              <span className="text-gray-300">Manual Revision</span>
+              <span className="text-gray-300">{t('status.manualRevision')}</span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-              <span className="text-gray-300">Approval Pending</span>
+              <span className="text-gray-300">{t('status.approvalPending')}</span>
             </div>
           </div>
         </div>
@@ -174,14 +174,14 @@ const ClientDashboard: React.FC = () => {
       <div className="bg-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 border border-gray-700">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 sm:mb-8 space-y-4 sm:space-y-0">
           <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">Transaction History</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">{t('dashboard.transactionHistory')}</h2>
             <p className="text-sm sm:text-base text-gray-300">
-              View your payment history and project transactions
+              {t('client.paymentHistory')}
             </p>
           </div>
           <div className="flex items-center space-x-2 text-sm text-gray-400">
             <CreditCard className="h-4 w-4" aria-hidden="true" />
-            <span>₹0 Total Spent</span>
+            <span>₹0 {t('client.totalSpent')}</span>
           </div>
         </div>
 
@@ -191,11 +191,11 @@ const ClientDashboard: React.FC = () => {
             {/* Table Header */}
             <div className="bg-gray-700 rounded-t-lg">
               <div className="grid grid-cols-5 gap-4 p-4 text-sm font-semibold text-gray-300">
-                <div className="text-left">Project ID</div>
-                <div className="text-left">Project Name</div>
-                <div className="text-left">Freelancer ID</div>
-                <div className="text-right">Value (₹)</div>
-                <div className="text-center">Value Status</div>
+                <div className="text-left">{t('dashboard.projectId')}</div>
+                <div className="text-left">{t('dashboard.projectName')}</div>
+                <div className="text-left">{t('dashboard.freelancerId')}</div>
+                <div className="text-right">{t('dashboard.value')} (₹)</div>
+                <div className="text-center">{t('dashboard.valueStatus')}</div>
               </div>
             </div>
 
@@ -208,11 +208,10 @@ const ClientDashboard: React.FC = () => {
                   </div>
                   <div className="space-y-2">
                     <h3 className="text-lg sm:text-xl font-semibold text-white">
-                      No Transactions Yet
+                      {t('dashboard.noTransactionsYet')}
                     </h3>
                     <p className="text-sm sm:text-base text-gray-400 max-w-md">
-                      Your payment history will appear here once you complete projects and make payments. 
-                      All transactions are secure and processed through our escrow system.
+                      {t('client.transactionHistory')}
                     </p>
                   </div>
                   <div className="pt-4">
@@ -222,7 +221,7 @@ const ClientDashboard: React.FC = () => {
                       aria-label="Create a new project"
                     >
                       <Plus className="h-4 w-4" aria-hidden="true" />
-                      <span>Create Project</span>
+                      <span>{t('client.createProject')}</span>
                     </button>
                   </div>
                 </div>
@@ -235,15 +234,15 @@ const ClientDashboard: React.FC = () => {
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="bg-gray-700 rounded-lg p-4 text-center">
             <div className="text-2xl font-bold text-red-400">₹0</div>
-            <div className="text-sm text-gray-300">Total Spent</div>
+            <div className="text-sm text-gray-300">{t('stats.totalSpent')}</div>
           </div>
           <div className="bg-gray-700 rounded-lg p-4 text-center">
             <div className="text-2xl font-bold text-blue-400">0</div>
-            <div className="text-sm text-gray-300">Projects Funded</div>
+            <div className="text-sm text-gray-300">{t('stats.projectsFunded')}</div>
           </div>
           <div className="bg-gray-700 rounded-lg p-4 text-center">
             <div className="text-2xl font-bold text-purple-400">₹0</div>
-            <div className="text-sm text-gray-300">Average Project Cost</div>
+            <div className="text-sm text-gray-300">{t('stats.averageProjectCost')}</div>
           </div>
         </div>
       </div>
@@ -272,9 +271,9 @@ const ClientDashboard: React.FC = () => {
       {/* Message Composition Form */}
       <div className="bg-gray-800 rounded-2xl p-4 sm:p-6 lg:p-8 border border-gray-700">
         <div className="mb-6 sm:mb-8">
-          <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">Send Message</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">{t('dashboard.sendMessage')}</h2>
           <p className="text-sm sm:text-base text-gray-300">
-            Communicate with freelancers about your projects
+            {t('client.communicateFreelancers')}
           </p>
         </div>
 
@@ -282,14 +281,14 @@ const ClientDashboard: React.FC = () => {
           {/* Freelancer ID Selection */}
           <div>
             <label htmlFor="freelancer-select" className="block text-gray-300 text-sm font-semibold mb-2">
-              Select Freelancer *
+              {t('dashboard.selectFreelancer')} *
             </label>
             <select
               id="freelancer-select"
               className="w-full px-4 py-3 border-2 border-gray-600 rounded-lg focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 bg-gray-700 text-white text-sm sm:text-base"
               required
             >
-              <option value="">Choose a freelancer...</option>
+              <option value="">{t('client.chooseFreelancer')}</option>
               <option value="F123456789">John Smith (ID: F123456789)</option>
               <option value="F987654321">Sarah Johnson (ID: F987654321)</option>
               <option value="F456789123">Mike Chen (ID: F456789123)</option>
@@ -299,14 +298,14 @@ const ClientDashboard: React.FC = () => {
           {/* Project ID Selection */}
           <div>
             <label htmlFor="project-select" className="block text-gray-300 text-sm font-semibold mb-2">
-              Select Project *
+              {t('dashboard.selectProject')} *
             </label>
             <select
               id="project-select"
               className="w-full px-4 py-3 border-2 border-gray-600 rounded-lg focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 bg-gray-700 text-white text-sm sm:text-base"
               required
             >
-              <option value="">Choose a project...</option>
+              <option value="">{t('dashboard.chooseProject')}</option>
               <option value="P67890">Corporate Video Production (ID: P67890)</option>
               <option value="P54321">Social Media Campaign (ID: P54321)</option>
               <option value="P98765">Product Demo Video (ID: P98765)</option>
@@ -316,36 +315,36 @@ const ClientDashboard: React.FC = () => {
           {/* Subject Category */}
           <div>
             <label htmlFor="subject-category" className="block text-gray-300 text-sm font-semibold mb-2">
-              Subject Category *
+              {t('dashboard.subjectCategory')} *
             </label>
             <select
               id="subject-category"
               className="w-full px-4 py-3 border-2 border-gray-600 rounded-lg focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 bg-gray-700 text-white text-sm sm:text-base"
               required
             >
-              <option value="">Select category...</option>
-              <option value="deliverable-checklist">Deliverable Checklist</option>
-              <option value="work-verification">Work Verification</option>
-              <option value="manual-revision">Invoking Manual Revision</option>
-              <option value="work-approval">Work Approval</option>
+              <option value="">{t('form.selectCategory')}</option>
+              <option value="deliverable-checklist">{t('form.deliverableChecklist')}</option>
+              <option value="work-verification">{t('form.workVerification')}</option>
+              <option value="manual-revision">{t('form.manualRevision')}</option>
+              <option value="work-approval">{t('form.workApproval')}</option>
             </select>
           </div>
 
           {/* Message Content */}
           <div>
             <label htmlFor="message-content" className="block text-gray-300 text-sm font-semibold mb-2">
-              Message Content *
+              {t('dashboard.messageContent')} *
             </label>
             <textarea
               id="message-content"
               rows={6}
-              placeholder="Type your message here..."
+              placeholder={t('form.typeMessage')}
               maxLength={1000}
               className="w-full px-4 py-3 border-2 border-gray-600 rounded-lg focus:outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 bg-gray-700 text-white placeholder-gray-400 text-sm sm:text-base resize-none"
               required
             />
             <div className="flex justify-between items-center mt-1">
-              <p className="text-gray-400 text-xs sm:text-sm">Maximum 1000 characters</p>
+              <p className="text-gray-400 text-xs sm:text-sm">{t('dashboard.maxCharacters')}</p>
               <span className="text-xs sm:text-sm text-gray-400">0/1000</span>
             </div>
           </div>
@@ -353,22 +352,22 @@ const ClientDashboard: React.FC = () => {
           {/* File Attachments */}
           <div>
             <label className="block text-gray-300 text-sm font-semibold mb-2">
-              File Attachments (Optional)
+              {t('dashboard.fileAttachments')} ({t('form.optional')})
             </label>
             <div className="border-2 border-dashed border-gray-600 rounded-lg p-6 text-center hover:border-gray-500 transition-colors">
               <Upload className="mx-auto h-8 w-8 text-gray-400 mb-4" />
               <p className="text-gray-300 font-medium mb-2">
-                Drag and drop files here
+                {t('dashboard.dragDropFiles')}
               </p>
-              <p className="text-sm text-gray-400 mb-4">or</p>
+              <p className="text-sm text-gray-400 mb-4">{t('common.or')}</p>
               <button
                 type="button"
                 className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-purple-400"
               >
-                Browse Files
+                {t('dashboard.browseFiles')}
               </button>
               <p className="text-xs text-gray-400 mt-4">
-                Supported: PDF, DOC, DOCX, JPG, PNG, MP4, ZIP, etc. Max 10MB per file
+                {t('dashboard.supportedFormats')}
               </p>
             </div>
           </div>
@@ -380,7 +379,7 @@ const ClientDashboard: React.FC = () => {
               className="w-full flex items-center justify-center space-x-2 py-3 sm:py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold text-base sm:text-lg transition-colors focus:outline-none focus:ring-2 focus:ring-purple-400"
             >
               <MessageSquare className="h-5 w-5" />
-              <span>Send Message</span>
+              <span>{t('dashboard.sendMessage')}</span>
             </button>
           </div>
         </form>
@@ -394,10 +393,10 @@ const ClientDashboard: React.FC = () => {
           </div>
           <div className="space-y-2">
             <h3 className="text-lg sm:text-xl font-semibold text-white">
-              No messages yet
+              {t('dashboard.noMessagesYet')}
             </h3>
             <p className="text-sm sm:text-base text-gray-400 max-w-md">
-              Start a conversation with a freelancer to discuss project details, deliverables, and approvals.
+              {t('client.startConversationFreelancer')}
             </p>
           </div>
         </div>
@@ -730,14 +729,14 @@ const ClientDashboard: React.FC = () => {
             {/* User Menu */}
             <div className="flex items-center space-x-2 sm:space-x-4">
               <span className="text-gray-300 text-sm sm:text-base hidden sm:inline">
-                Welcome, {profileData.companyName || 'Client'}
+                {t('dashboard.welcome')}, {profileData.companyName || t('nav.asClient')}
               </span>
               <button
                 onClick={handleLogout}
                 className="px-3 py-2 sm:px-4 bg-red-600 hover:bg-red-700 focus:bg-red-700 text-white rounded-lg transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-red-400"
                 aria-label="Logout from dashboard"
               >
-                Logout
+                {t('dashboard.logout')}
               </button>
             </div>
           </div>

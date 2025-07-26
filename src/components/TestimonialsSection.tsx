@@ -293,15 +293,15 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ darkMode }) =
               <h4 className={`font-semibold mb-2 ${
                 darkMode ? 'text-white' : 'text-gray-900'
               }`}>
-                {study.title}
+                {t(`testimonials.caseStudy${index + 1}.title`) || study.title}
               </h4>
               <p className={`text-sm ${
                 darkMode ? 'text-gray-300' : 'text-gray-600'
               }`}>
-                {study.description}
+                {t(`testimonials.caseStudy${index + 1}.description`) || study.description}
               </p>
               <span className="inline-block mt-2 px-3 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">
-                {study.category}
+                {t(`testimonials.caseStudy${index + 1}.category`) || study.category}
               </span>
             </div>
           ))}
@@ -314,7 +314,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ darkMode }) =
           <h3 className={`text-center font-semibold mb-6 ${
             darkMode ? 'text-white' : 'text-gray-900'
           }`}>
-            Trusted & Certified
+            {t('trust.trustedCertified')}
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {trustBadges.map((badge, index) => (
@@ -323,7 +323,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ darkMode }) =
                 <span className={`text-sm font-medium ${
                   darkMode ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  {badge.name}
+                  {t(`trust.badge${index + 1}`) || badge.name}
                 </span>
               </div>
             ))}
