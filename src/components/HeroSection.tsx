@@ -46,10 +46,6 @@ const HeroSection: React.FC<HeroSectionProps> = ({ darkMode }) => {
                 darkMode ? 'text-white' : 'text-gray-900'
               }`}>
                 {t('hero.title')}
-                <span className={darkMode ? 'text-blue-400' : 'text-blue-600'}>
-                <span className={darkMode ? 'text-cyan-400' : 'text-purple-600'}>
-                </span>{' '}
-                </span>
               </h1>
               
               <p className={`text-lg sm:text-xl leading-relaxed ${
@@ -61,7 +57,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ darkMode }) => {
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-6">
                 <a href="/signup/client" className="px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold text-lg transition-colors text-center">
-                  Start Your Project
+                  {t('hero.startTrial')}
                 </a>
                 <button className="px-8 py-4 border-2 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white rounded-lg font-semibold text-lg transition-colors">
                   {t('hero.watchDemo')}
@@ -72,15 +68,15 @@ const HeroSection: React.FC<HeroSectionProps> = ({ darkMode }) => {
               <div className="flex flex-wrap items-center gap-4 pt-6">
                 <div className="flex items-center space-x-2 bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
                   <span>🛡️</span>
-                  <span>Secure Escrow</span>
+                  <span>{t('hero.secureEscrow')}</span>
                 </div>
                 <div className="flex items-center space-x-2 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
                   <span>🤖</span>
-                  <span>AI Verification</span>
+                  <span>{t('hero.aiVerification')}</span>
                 </div>
                 <div className="flex items-center space-x-2 bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
                   <span>⚡</span>
-                  <span>Instant Payments</span>
+                  <span>{t('hero.instantPayments')}</span>
                 </div>
               </div>
 
@@ -123,23 +119,23 @@ const HeroSection: React.FC<HeroSectionProps> = ({ darkMode }) => {
             }`}>
               <div className="text-center">
                 <div className={`text-3xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                  Your Secure Workspace
+                  {t('hero.getStartedToday')}
                 </div>
                 <p className={`text-lg mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  Manage projects, track payments, and communicate securely
+                  {t('hero.subtitle')}
                 </p>
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
                     <div className="text-2xl font-bold text-purple-600">15,247+</div>
-                    <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Active Users</div>
+                    <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>{t('hero.activeUsers')}</div>
                   </div>
                   <div className={`p-4 rounded-lg ${darkMode ? 'bg-gray-700' : 'bg-gray-50'}`}>
                     <div className="text-2xl font-bold text-cyan-600">₹50L+</div>
-                    <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Secured</div>
+                    <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>{t('hero.secured')}</div>
                   </div>
                 </div>
                 <button className="w-full px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors">
-                  Get Started Today
+                  {t('hero.getStartedToday')}
                 </button>
               </div>
             </div>

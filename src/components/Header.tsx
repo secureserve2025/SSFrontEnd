@@ -140,7 +140,7 @@ const Header: React.FC<HeaderProps> = ({ darkMode }) => {
                 <div className={`absolute top-full right-0 mt-1 w-56 rounded-md shadow-lg ${
                   darkMode ? 'bg-gray-800 border border-purple-500/30' : 'bg-white border border-gray-200'
                 } py-1 max-h-64 overflow-y-auto`}>
-                  {indianLanguages.map((language) => (
+                  {supportedLanguages.map((language) => (
                     <button
                       key={language.code}
                       onClick={() => handleLanguageChange(language.code)}
