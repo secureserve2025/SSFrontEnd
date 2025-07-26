@@ -188,13 +188,13 @@ function AppContent() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <LanguageProvider>
         <AIProvider>
           <AppContent />
         </AIProvider>
       </LanguageProvider>
-    </BrowserRouter>
+    </Router>
   );
 }
 
