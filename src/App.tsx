@@ -27,6 +27,7 @@ import FreelancerSignup from './pages/FreelancerSignup';
 import ClientSignup from './pages/ClientSignup';
 import FreelancerDashboard from './pages/FreelancerDashboard';
 import ClientDashboard from './pages/ClientDashboard';
+import ContactUs from './components/ContactUs';
 
 function App() {
   const [showOnboarding, setShowOnboarding] = useState(false);
@@ -65,6 +66,14 @@ function App() {
             <Route path="/signup/client" element={<ClientSignup />} />
             <Route path="/freelancer/dashboard" element={<FreelancerDashboard />} />
             <Route path="/client/dashboard" element={<ClientDashboard />} />
+            <Route path="/contact" element={
+              <div className="min-h-screen transition-colors duration-300 bg-gray-900">
+                <Header darkMode={darkMode} />
+                <div className="pt-16">
+                  <ContactUs darkMode={darkMode} />
+                </div>
+              </div>
+            } />
             <Route path="/compliance" element={
               <div className="min-h-screen transition-colors duration-300 bg-gray-900">
                 <Header darkMode={darkMode} />

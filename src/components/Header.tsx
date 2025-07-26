@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ darkMode }) => {
   const exploreLinks = [
     { label: t('nav.howItWorks'), href: '#how-it-works', onClick: () => scrollToSection('how-it-works') },
     { label: t('nav.faqs'), href: '#faqs', onClick: () => scrollToSection('faqs') },
-    { label: t('nav.contact'), href: '#contact', onClick: () => scrollToFooter() },
+    { label: t('nav.contact'), href: '/contact', onClick: null },
   ];
 
   const loginOptions = [
