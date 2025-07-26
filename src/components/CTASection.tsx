@@ -220,12 +220,6 @@ const CTASection: React.FC<CTASectionProps> = ({ darkMode }) => {
                 <span>{isFormValid ? 'Send Message' : 'Please fill all fields'}</span>
               </button>
               
-              {/* Form Requirements */}
-              <div className="text-center">
-                <p className="text-gray-400 text-xs">
-                  * All fields are required
-                </p>
-              </div>
             </form>
           </div>
           

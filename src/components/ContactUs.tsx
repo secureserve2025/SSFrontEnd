@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, MessageSquare, Send, CheckCircle, AlertCircle, User, Building } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, MessageSquare, Send, CheckCircle, AlertCircle, User, Building, ArrowLeft, Home } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface ContactUsProps {
   darkMode: boolean;
@@ -165,6 +166,18 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
       darkMode ? 'bg-gray-900' : 'bg-white'
     }`}>
       <div className="max-w-7xl mx-auto">
+        {/* Back to Home Navigation */}
+        <div className="mb-8">
+          <Link 
+            to="/" 
+            className="inline-flex items-center space-x-2 text-purple-400 hover:text-purple-300 transition-colors group"
+          >
+            <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
+            <Home className="h-4 w-4" />
+            <span className="font-medium">Back to Home</span>
+          </Link>
+        </div>
+
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className={`text-3xl lg:text-4xl font-bold mb-4 ${
