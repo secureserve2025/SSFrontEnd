@@ -111,9 +111,6 @@ function App() {
                   </div>
                 </div>
                 
-                {/* Product Demo Section */}
-                <ProductDemo darkMode={darkMode} />
-                
                 {/* Benefits Section */}
                 <BenefitsSection darkMode={darkMode} />
                 
