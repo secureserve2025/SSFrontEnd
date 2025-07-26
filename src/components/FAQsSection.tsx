@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface FAQsSectionProps {
   darkMode: boolean;
 }
 
 const FAQsSection: React.FC<FAQsSectionProps> = ({ darkMode }) => {
+  const { t } = useLanguage();
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
   const faqs = [
@@ -53,12 +55,12 @@ const FAQsSection: React.FC<FAQsSectionProps> = ({ darkMode }) => {
           <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 ${
             darkMode ? 'text-white' : 'text-gray-900'
           }`}>
-            Everything you need to know
+            {t('faqs.title')}
           </h2>
           <p className={`text-lg ${
             darkMode ? 'text-gray-300' : 'text-gray-600'
           }`}>
-            Got questions? We've got answers. Learn more about how SecureServe works and how it can benefit you.
+            {t('faqs.subtitle')}
           </p>
         </div>
 

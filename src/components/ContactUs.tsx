@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, MessageSquare, Send, CheckCircle, AlertCircle, User, Building, ArrowLeft, Home } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface ContactUsProps {
   darkMode: boolean;
 }
 
 const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -160,7 +162,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
           >
             <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
             <Home className="h-4 w-4" />
-            <span className="font-medium">Back to Home</span>
+            <span className="font-medium">{t('contact.backToHome')}</span>
           </Link>
         </div>
 
@@ -169,12 +171,12 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
           <h1 className={`text-3xl lg:text-4xl font-bold mb-4 ${
             darkMode ? 'text-white' : 'text-gray-900'
           }`}>
-            Contact Us
+            {t('contact.title')}
           </h1>
           <p className={`text-lg ${
             darkMode ? 'text-gray-300' : 'text-gray-600'
           }`}>
-            Get in touch with our team for support, partnerships, or general inquiries
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -184,7 +186,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
             <div className="flex items-center space-x-2">
               <CheckCircle className="h-5 w-5 text-green-400" />
               <p className="text-green-400 font-medium">
-                Thank you! Your message has been sent successfully. We'll get back to you within 4-6 hours.
+                {t('contact.successMessage')}
               </p>
             </div>
           </div>
@@ -198,7 +200,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
             <h2 className={`text-2xl font-bold mb-6 ${
               darkMode ? 'text-white' : 'text-gray-900'
             }`}>
-              Send us a Message
+              {t('contact.ourOffices')}
             </h2>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -207,7 +209,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
                 <label className={`block text-sm font-medium mb-2 ${
                   darkMode ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  I am a *
+                  {t('contact.userType')} *
                 </label>
                 <div className="grid grid-cols-2 gap-4">
                   <label className={`flex items-center p-3 border rounded-lg cursor-pointer transition-colors ${
@@ -224,7 +226,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
                       className="sr-only"
                     />
                     <Building className="h-5 w-5 text-purple-600 mr-2" />
-                    <span className={darkMode ? 'text-white' : 'text-gray-900'}>Client</span>
+                    <span className={darkMode ? 'text-white' : 'text-gray-900'}>{t('contact.client')}</span>
                   </label>
                   <label className={`flex items-center p-3 border rounded-lg cursor-pointer transition-colors ${
                     formData.userType === 'freelancer'
@@ -240,7 +242,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
                       className="sr-only"
                     />
                     <User className="h-5 w-5 text-purple-600 mr-2" />
-                    <span className={darkMode ? 'text-white' : 'text-gray-900'}>Freelancer</span>
+                    <span className={darkMode ? 'text-white' : 'text-gray-900'}>{t('contact.freelancer')}</span>
                   </label>
                 </div>
               </div>
@@ -251,7 +253,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
                   <label className={`block text-sm font-medium mb-2 ${
                     darkMode ? 'text-gray-300' : 'text-gray-700'
                   }`}>
-                    Full Name *
+                    {t('contact.fullName')} *
                   </label>
                   <input
                     type="text"
@@ -280,7 +282,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
                   <label className={`block text-sm font-medium mb-2 ${
                     darkMode ? 'text-gray-300' : 'text-gray-700'
                   }`}>
-                    Email Address *
+                    {t('contact.email')} *
                   </label>
                   <input
                     type="email"
@@ -312,7 +314,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
                   <label className={`block text-sm font-medium mb-2 ${
                     darkMode ? 'text-gray-300' : 'text-gray-700'
                   }`}>
-                    Company/Organization
+                    {t('contact.company')}
                   </label>
                   <input
                     type="text"
@@ -333,7 +335,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
                   <label className={`block text-sm font-medium mb-2 ${
                     darkMode ? 'text-gray-300' : 'text-gray-700'
                   }`}>
-                    Phone Number
+                    {t('contact.phone')}
                   </label>
                   <input
                     type="tel"
@@ -364,7 +366,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
                 <label className={`block text-sm font-medium mb-2 ${
                   darkMode ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  Subject *
+                  {t('contact.subject')} *
                 </label>
                 <select
                   name="subject"
@@ -399,7 +401,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
                 <label className={`block text-sm font-medium mb-2 ${
                   darkMode ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  Message *
+                  {t('contact.message')} *
                 </label>
                 <textarea
                   name="message"
@@ -454,7 +456,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
                 ) : (
                   <>
                     <Send className="h-4 w-4" />
-                    <span>Send Message</span>
+                    <span>{t('contact.submit')}</span>
                   </>
                 )}
               </button>
@@ -575,7 +577,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
                 <h3 className={`text-lg font-semibold ${
                   darkMode ? 'text-white' : 'text-gray-900'
                 }`}>
-                  Business Hours
+                  {t('contact.businessHours')}
                 </h3>
               </div>
               <div className="space-y-2">

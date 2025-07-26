@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FileText, Shield, Upload, CheckCircle, Zap, Users, ChevronDown } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface HowItWorksSectionProps {
   darkMode: boolean;
 }
 
 const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ darkMode }) => {
+  const { t } = useLanguage();
   const [activeStep, setActiveStep] = useState(0);
   const [visibleSteps, setVisibleSteps] = useState<number[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
@@ -120,12 +122,12 @@ const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ darkMode }) => {
           <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 ${
             darkMode ? 'text-white' : 'text-gray-900'
           }`}>
-            How SecureServe Works
+            {t('howItWorks.title')}
           </h2>
           <p className={`text-lg sm:text-xl ${
             darkMode ? 'text-gray-300' : 'text-gray-600'
           }`}>
-            Simple, secure, and powered by AI to protect both freelancers and clients
+            {t('howItWorks.subtitle')}
           </p>
         </div>
 

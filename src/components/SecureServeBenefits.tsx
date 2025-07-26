@@ -1,37 +1,40 @@
 import React from 'react';
 import { FileText, Shield, CheckCircle, Zap } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface SecureServeBenefitsProps {
   darkMode: boolean;
 }
 
 const SecureServeBenefits: React.FC<SecureServeBenefitsProps> = ({ darkMode }) => {
+  const { t } = useLanguage();
+  
   const benefits = [
     {
       icon: FileText,
-      title: "Smart Contracts",
-      description: "AI helps create clear, detailed project specifications that protect both parties and set clear expectations from the start.",
+      title: t('secureServe.smartContracts'),
+      description: t('secureServe.smartContractsDesc'),
       color: "blue",
       delay: "0s"
     },
     {
       icon: Shield,
-      title: "Secure Escrow System",
-      description: "Money is held safely in escrow until work is approved. Complete protection for both freelancers and clients throughout the project.",
+      title: t('secureServe.secureEscrow'),
+      description: t('secureServe.secureEscrowDesc'),
       color: "green",
       delay: "0.2s"
     },
     {
       icon: CheckCircle,
-      title: "AI-Verified Deliverables",
-      description: "Advanced AI instantly verifies if your work matches client requirements, eliminating subjective disputes and ensuring fair evaluation.",
+      title: t('secureServe.aiVerified'),
+      description: t('secureServe.aiVerifiedDesc'),
       color: "purple",
       delay: "0.4s"
     },
     {
       icon: Zap,
-      title: "Instant Payments",
-      description: "Once AI confirms work quality meets specifications, payments are transferred instantly to your account without delays.",
+      title: t('secureServe.instantPayments'),
+      description: t('secureServe.instantPaymentsDesc'),
       color: "yellow",
       delay: "0.6s"
     }
@@ -77,12 +80,12 @@ const SecureServeBenefits: React.FC<SecureServeBenefitsProps> = ({ darkMode }) =
           <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 ${
             darkMode ? 'text-white' : 'text-gray-900'
           }`}>
-            Switch to SecureServe
+            {t('secureServe.title')}
           </h2>
           <h3 className={`text-lg sm:text-xl lg:text-2xl font-medium mb-6 ${
             darkMode ? 'text-gray-300' : 'text-gray-600'
           }`}>
-            Your AI-Powered Payment Guardian
+            {t('secureServe.subtitle')}
           </h3>
         </div>
 

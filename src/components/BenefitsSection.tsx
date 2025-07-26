@@ -1,27 +1,30 @@
 import React from 'react';
 import { UserX, RefreshCw, AlertTriangle, DollarSign, MessageSquareX } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface BenefitsSectionProps {
   darkMode: boolean;
 }
 
 const BenefitsSection: React.FC<BenefitsSectionProps> = ({ darkMode }) => {
+  const { t } = useLanguage();
+  
   const painPoints = [
     {
       icon: MessageSquareX,
-      title: "Subjective quality disputes",
+      title: t('benefits.subjectiveDisputes'),
       delay: "0s",
       glowColor: "pink"
     },
     {
       icon: RefreshCw,
-      title: "Endless revision delaying your payment",
+      title: t('benefits.endlessRevisions'),
       delay: "0.2s",
       glowColor: "purple"
     },
     {
       icon: DollarSign,
-      title: "Unpredictable payment schedules",
+      title: t('benefits.unpredictablePayments'),
       delay: "0.4s",
       glowColor: "cyan"
     }
@@ -57,7 +60,7 @@ const BenefitsSection: React.FC<BenefitsSectionProps> = ({ darkMode }) => {
           <h2 className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 ${
             darkMode ? 'text-white' : 'text-gray-900'
           }`}>
-            Say goodbye to...
+            {t('benefits.title')}
           </h2>
         </div>
 

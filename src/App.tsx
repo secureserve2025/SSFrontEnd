@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
+import { useLanguage } from './contexts/LanguageContext';
 import AIProvider from './components/AIIntegrationHooks';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
@@ -29,36 +30,6 @@ import FreelancerDashboard from './pages/FreelancerDashboard';
 import ClientDashboard from './pages/ClientDashboard';
 import ContactUs from './components/ContactUs';
 
-function App() {
-  const [showOnboarding, setShowOnboarding] = useState(false);
-  const [showStripeWizard, setShowStripeWizard] = useState(false);
-  const [onboardingType, setOnboardingType] = useState<'freelancer' | 'client'>('freelancer');
-  
-  // Always use dark mode
-  const darkMode = true;
-
-  // Set dark mode class on document
-  useEffect(() => {
-    document.documentElement.classList.add('dark');
-    
-    // Check if user is new (you can implement this logic based on your needs)
-    const isNewUser = !localStorage.getItem('hasVisited');
-    if (isNewUser) {
-      localStorage.setItem('hasVisited', 'true');
-      // Optionally show onboarding for new users
-      // setShowOnboarding(true);
-    }
-  }, []);
-
-  const handleStartOnboarding = (type: 'freelancer' | 'client') => {
-    setOnboardingType(type);
-    setShowOnboarding(true);
-  };
-
-  return (
-    <LanguageProvider>
-      <AIProvider>
-        <Router>
           <Routes>
             <Route path="/login/freelancer" element={<FreelancerLogin />} />
             <Route path="/login/client" element={<ClientLogin />} />
@@ -149,16 +120,15 @@ function App() {
                     <div className="grid md:grid-cols-3 gap-8 mb-8">
                       {/* Company Info */}
                       <div>
-                        <h3 className="text-white font-semibold mb-4">SecureServe</h3>
+                        <h3 className="text-white font-semibold mb-4">{t('footer.company')}</h3>
                         <p className="text-gray-400 text-sm leading-relaxed">
-                          India's first AI-powered escrow platform for freelancers and clients. 
-                          Secure payments, verified deliverables.
+                          {t('footer.description')}
                         </p>
                       </div>
                       
                       {/* Contact Details */}
                       <div>
-                        <h3 className="text-white font-semibold mb-4">Contact Us</h3>
+                        <h3 className="text-white font-semibold mb-4">{t('footer.contactUs')}</h3>
                         <div className="space-y-2 text-gray-400 text-sm">
                           <p>📍 #42, 3rd Floor, Koramangala</p>
                           <p>Bengaluru, Karnataka 560034</p>
@@ -169,7 +139,7 @@ function App() {
                       
                       {/* Business Hours */}
                       <div>
-                        <h3 className="text-white font-semibold mb-4">Business Hours</h3>
+                        <h3 className="text-white font-semibold mb-4">{t('footer.businessHours')}</h3>
                         <div className="space-y-2 text-gray-400 text-sm">
                           <p>Monday - Friday</p>
                           <p>9:00 AM - 6:00 PM IST</p>
@@ -182,7 +152,7 @@ function App() {
                     {/* Bottom Bar */}
                     <div className="border-t border-gray-700 pt-6 text-center">
                       <p className="text-gray-400 text-sm">
-                        © 2025 SecureServe. Built for Indian freelancers, by Indian freelancers.
+                        {t('footer.copyright')}
                       </p>
                     </div>
                   </div>
@@ -213,6 +183,16 @@ function App() {
             } />
           </Routes>
         </Router>
+      </AIProvider>
+    </LanguageProvider>
+  );
+}
+
+function App() {
+  return (
+    <LanguageProvider>
+      <AIProvider>
+        <AppContent />
       </AIProvider>
     </LanguageProvider>
   );
