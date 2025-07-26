@@ -60,20 +60,6 @@ const ContactUs: React.FC<ContactUsProps> = ({ darkMode }) => {
       details: 'Bengaluru, Karnataka 560034',
       phone: '+91 80 4567 8900',
       email: 'bangalore@secureserve.ai'
-    },
-    {
-      city: 'Mumbai (Regional Office)',
-      address: 'WeWork, Oberoi Commerz II',
-      details: 'Goregaon East, Mumbai 400063',
-      phone: '+91 22 6789 0123',
-      email: 'mumbai@secureserve.ai'
-    },
-    {
-      city: 'Delhi NCR (Regional Office)',
-      address: 'DLF Cyber City, Building 10',
-      details: 'Sector 24, Gurugram 122002',
-      phone: '+91 124 456 7890',
-      email: 'delhi@secureserve.ai'
     }
   ];
 
