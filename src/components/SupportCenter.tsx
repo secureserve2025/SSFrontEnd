@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { MessageCircle, Phone, Mail, FileText, Clock, AlertTriangle, CheckCircle, Search, ExternalLink } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface SupportCenterProps {
   darkMode: boolean;
 }
 
 const SupportCenter: React.FC<SupportCenterProps> = ({ darkMode }) => {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState('general');
   const [searchQuery, setSearchQuery] = useState('');
 

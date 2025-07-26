@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Calendar, CheckCircle, Clock, Zap, Users, Code, Palette, Brain, Globe, MessageSquare } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface RoadmapSectionProps {
   darkMode: boolean;
 }
 
 const RoadmapSection: React.FC<RoadmapSectionProps> = ({ darkMode }) => {
+  const { t } = useLanguage();
   const [selectedQuarter, setSelectedQuarter] = useState('Q1-2025');
 
   const roadmapData = {
