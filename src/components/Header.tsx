@@ -32,19 +32,9 @@ const Header: React.FC<HeaderProps> = ({ darkMode }) => {
     { label: t('nav.blog'), href: '#blog' }
   ];
   
-  const indianLanguages = [
+  const supportedLanguages = [
     { label: 'English', code: 'en', flag: '🇺🇸' },
-    { label: 'हिंदी (Hindi)', code: 'hi', flag: '🇮🇳' },
-    { label: 'বাংলা (Bengali)', code: 'bn', flag: '🇧🇩' },
-    { label: 'తెలుగు (Telugu)', code: 'te', flag: '🇮🇳' },
-    { label: 'मराठी (Marathi)', code: 'mr', flag: '🇮🇳' },
-    { label: 'தமிழ் (Tamil)', code: 'ta', flag: '🇮🇳' },
-    { label: 'ગુજરાતી (Gujarati)', code: 'gu', flag: '🇮🇳' },
-    { label: 'ಕನ್ನಡ (Kannada)', code: 'kn', flag: '🇮🇳' },
-    { label: 'മലയാളം (Malayalam)', code: 'ml', flag: '🇮🇳' },
-    { label: 'ਪੰਜਾਬੀ (Punjabi)', code: 'pa', flag: '🇮🇳' },
-    { label: 'ଓଡ଼ିଆ (Odia)', code: 'or', flag: '🇮🇳' },
-    { label: 'অসমীয়া (Assamese)', code: 'as', flag: '🇮🇳' },
+    { label: 'हिंदी', code: 'hi', flag: '🇮🇳' },
   ];
 
   const scrollToSection = (sectionId: string) => {
