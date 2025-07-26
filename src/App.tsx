@@ -7,7 +7,6 @@ import HeroSection from './components/HeroSection';
 import BenefitsSection from './components/BenefitsSection';
 import SecureServeBenefits from './components/SecureServeBenefits';
 import HowItWorksSection from './components/HowItWorksSection';
-import ProductDemo from './components/ProductDemo';
 import TestimonialsSection from './components/TestimonialsSection';
 import SupportCenter from './components/SupportCenter';
 import ComplianceSection from './components/ComplianceSection';
