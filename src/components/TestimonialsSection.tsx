@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Star, Quote, ChevronLeft, ChevronRight, Play, Award } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 interface TestimonialsSectionProps {
   darkMode: boolean;
 }
 
 const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ darkMode }) => {
+  const { t } = useLanguage();
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -133,12 +135,12 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ darkMode }) =
           <h2 className={`text-3xl lg:text-4xl font-bold mb-4 ${
             darkMode ? 'text-white' : 'text-gray-900'
           }`}>
-            Trusted by 15,000+ Users
+            {t('testimonials.title')}
           </h2>
           <p className={`text-lg ${
             darkMode ? 'text-gray-300' : 'text-gray-600'
           }`}>
-            Real stories from freelancers and clients who've transformed their work with SecureServe
+            {t('testimonials.subtitle')}
           </p>
         </div>
 
@@ -332,7 +334,7 @@ const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({ darkMode }) =
         <div className="text-center mt-12">
           <button className="inline-flex items-center space-x-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors">
             <Play className="h-4 w-4" />
-            <span>Watch Video Testimonials</span>
+            <span>{t('testimonials.watchVideo')}</span>
           </button>
         </div>
       </div>

@@ -110,12 +110,12 @@ const SupportCenter: React.FC<SupportCenterProps> = ({ darkMode }) => {
           <h2 className={`text-3xl lg:text-4xl font-bold mb-4 ${
             darkMode ? 'text-white' : 'text-gray-900'
           }`}>
-            Support & Help Center
+            {t('support.title')}
           </h2>
           <p className={`text-lg ${
             darkMode ? 'text-gray-300' : 'text-gray-600'
           }`}>
-            Get help when you need it with multiple support channels and clear escalation paths
+            {t('support.subtitle')}
           </p>
         </div>
 

@@ -181,12 +181,12 @@ const RoadmapSection: React.FC<RoadmapSectionProps> = ({ darkMode }) => {
           <h2 className={`text-3xl lg:text-4xl font-bold mb-4 ${
             darkMode ? 'text-white' : 'text-gray-900'
           }`}>
-            Product Roadmap
+            {t('roadmap.title')}
           </h2>
           <p className={`text-lg ${
             darkMode ? 'text-gray-300' : 'text-gray-600'
           }`}>
-            See what's coming next and request features for your workflow
+            {t('roadmap.subtitle')}
           </p>
         </div>
 
